@@ -1,0 +1,49 @@
+Scanner entrada = new Scanner(System.in);
+        //Declaração das variáveis:
+        double precoProduto, taxaDeImportacao, precoFinal;
+        double precoFrete = 0;
+        int tipoDeFrete;
+        String tipoDeFreteNome = "";
+        //Cadastro do valor original do produto:
+        System.out.println("Digite o valor do produto no exterior:");
+        precoProduto = entrada.nextDouble();
+        //Caso o preço digitado for menor ou igual a 0
+        if (precoProduto <= 0) {
+            System.out.println("Valor invalido, tente novamente mais tarde");
+            System.exit(0);
+        }
+        //Cadastro da opção de frete:
+        System.out.println("Escolha uma opcao de frete"
+                + "\n1 - Frete demorado, demora 60 dias para chegar"
+                + "\n2 - Frete medio, demora 30 dias para chegar"
+                + "\n3 - Frete rapido, demora cerca de 20 dias para chegar");
+        tipoDeFrete = entrada.nextInt();
+        //Caso seja escolhida uma opção inválidade de frete
+        if (tipoDeFrete != 1 && tipoDeFrete != 2 && tipoDeFrete != 3) {
+            System.out.println("Opcao de frete invalida, tente novamente mais tarde");
+            System.exit(0);
+        }
+        //Taxa de importação sobre qualquer produto
+        taxaDeImportacao = precoProduto * 0.6;
+        //Calculo do frete caso seja escolhido o frete demorado
+        if (tipoDeFrete == 1) {
+            precoFrete = precoProduto * 0.1;
+            tipoDeFreteNome = "demorado";
+        }
+        //Calculo do frete caso seja escolhido o frete medio
+        else if (tipoDeFrete == 2) {
+            precoFrete = precoProduto * 0.15;
+            tipoDeFreteNome = "medio";
+        }
+        //Calculo do frete caso seja escolhido o frete rapido
+        else if (tipoDeFrete == 3) {
+            precoFrete = precoProduto * 0.2;
+            tipoDeFreteNome = "rapido";
+        }
+        //Imprime o relatório final:
+        precoFinal = precoProduto + taxaDeImportacao + precoFrete;
+        System.out.println("Voce escolheu o frete " + tipoDeFreteNome);
+        System.out.println("Taxa de importacao: R$" + taxaDeImportacao);
+        System.out.println("Valor do frete: R$" + precoFrete);
+        System.out.println("Valor final da importacao: R$" + precoFinal);
+    }
